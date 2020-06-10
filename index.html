@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <title>Produção - Module</title>
+
+    <link href="styles/site.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="wrap">
+        <div class="boxUnit">
+            <h1 style="margin:0 4% 20px;">Selecione a unidade:</h1>
+            <select id="sltUnit"></select>
+        </div>
+
+        <div class="boxProd">
+            <h1 class="title">Produção diária</h1>
+        
+            <div class="boxLines"></div>
+
+            <!-- <img src="img/loading_icon.gif" width="320" class="load"> -->
+
+            <div class="boxInput">
+                <input type="hidden" name="id">
+
+                <div class="boxLineInput">
+                    <div class="formBlock">
+                        <p>Cap.</p>
+                        <input type="number" name="cap" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Prog SAP</p>
+                        <input type="number" name="prog_sap" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>TEND</p>
+                        <input type="number" name="tend" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Prog SAP D-1</p>
+                        <input type="number" name="prog_sap_d1" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Real SAP D-1</p>
+                        <input type="number" name="real_sap_d1" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>LEF Meta</p>
+                        <input type="number" name="lef_meta" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>LEF Real</p>
+                        <input type="number" name="lef_real" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>GLY Meta</p>
+                        <input type="number" name="gly_meta" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>GLY Real</p>
+                        <input type="number" name="gly_real" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="boxMostoInput">
+                    <div class="formBlock">
+                        <p>Dem</p>
+                        <input type="number" name="dem" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Real</p>
+                        <input type="number" name="real" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="boxLogInput">
+                    <div class="formBlock">
+                        <p>Retido (hL)</p>
+                        <input type="number" name="retido_hl" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Espaço</p>
+                        <input type="number" name="espaco" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>>50 Dias</p>
+                        <input type="number" name="acima_50_dias" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>CDP Falta</p>
+                        <input type="number" name="cdp_falta" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="boxCovidInput">
+                    <div class="formBlock">
+                        <p>Terc</p>
+                        <input type="number" name="terc" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Próp</p>
+                        <input type="number" name="prop" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Média</p>
+                        <input type="number" name="media" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Susp</p>
+                        <input type="number" name="susp" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Conf</p>
+                        <input type="number" name="conf" min="0" step="any">
+                    </div>
+                    <div class="formBlock">
+                        <p>Desc</p>
+                        <input type="number" name="desc" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="formBlock">
+                    <input type="button" id="btnTransmit" value="Salvar" class="btn">
+                </div>
+            </div>
+        </div>
+
+        <div class="boxConfirm">
+        </div>
+    </div>
+
+    <script src="scripts/jquery-3.4.1.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script>
+        Index.Initialize();
+    </script>
+
+</body>
+</html>

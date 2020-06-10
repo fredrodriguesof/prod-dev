@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <title>Listagem - Module</title>
+
+    <link href="styles/site.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="wrap" style="max-width:98%;">
+        <div class="totalContent">
+        </div>
+        <table class="newTable">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Unidade</th>
+                    <th>Linha</th>
+                    <th>Cap.</th>	
+                    <th>Prog SAP</th>	
+                    <th>TEND</th>	
+                    <th>Prog SAP D-1</th>	
+                    <th>Real SAP D-1</th>	
+                    <th>LEF Meta</th>	
+                    <th>LEF Real</th>	
+                    <th>GLY Meta</th>	
+                    <th>GLY Real</th>
+                    <th>Dem</th>	
+                    <th>Real</th>	
+                    <th>Retido (hL)</th>	
+                    <th>Espaço</th>	
+                    <th>>50 Dias</th>	
+                    <th>CDP Falta</th>	
+                    <th>Terc</th>	
+                    <th>Próp</th>	
+                    <th>Média</th>
+                    <th>Susp</th>
+                    <th>Conf</th>
+                    <th>Desc</th>
+                </tr>
+            </thead>
+            <tbody data-list>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="scripts/jquery-3.4.1.min.js"></script>
+    <!-- <script src="scripts/index.js"></script> -->
+    <script>
+        let baseUrl = "https://beer-production.herokuapp.com/";
+        //let baseUrl = "http://localhost:3333/";
+        
+        $.ajax({
+            method: 'GET',
+            url: baseUrl + 'production'
+        })
+        .done(function (response) {
+            if (response.length > 0) {
+                const table = document.querySelector('[data-list]');
+                table.innerHTML = FillTable(response);
+
+                const totalContent = document.querySelector('.totalContent');
+                totalContent.innerHTML = FillTotal(GetTotalByUnit(response));
+            }
+        });
+
+        function FillTable (data) {
+            return data.map((item) => {
+                var d = new Date(item.created_at); 
+                var date = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                var dateStr = date + '/' + month + '/' + year;
+
+                return (
+                    `<tr>
+                        <td class='posStl'>${dateStr}</td>
+                        <td class='posStl'>${item.unit_name}</td>
+                        <td class='posStl'>${item.line_name}</td>
+                        <td class='posStl'>${numberWithCommas(item.cap.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.prog_sap.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.tend.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.prog_sap_d1.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.real_sap_d1.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.lef_meta.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.lef_real.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.gly_meta.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.gly_real.replace('.', ''))}</td>
+                        
+                        <td class='posStl'>${numberWithCommas(item.dem.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.real.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.retido_hl.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.espaco.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.acima_50_dias.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.cdp_falta.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.terc.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.prop.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.media.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.susp.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.conf.replace('.', ''))}</td>
+                        <td class='posStl'>${numberWithCommas(item.desc.replace('.', ''))}</td>
+                    </tr>`
+                )
+            }).join('')
+        };
+
+        function FillTotal (data) {
+            return data.map((item) => {
+                return (
+                    `<div class='boxTotal'>
+                        <span class='title'>${item.unit_name}</span>
+                        <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
+                        <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
+                        <span class='prop'>Prog SAP D-1: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
+                        <span class='prop'>Real SAP D-1: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+                    </div>`
+                )
+            }).join('')
+        };
+
+        // function FillTotalRegional (data) {
+        //     return data.map((item) => {
+        //         return (
+        //             `<div class='boxTotal'>
+        //                 <span class='title'>Total Regional</span>
+        //                 <span class='prop'>Cerveja/RGB: <b>${numberWithCommas(item.prog_sap)}</b></span>
+        //                 <span class='prop'>Cerveja/Lata: <b>${numberWithCommas(item.tend)}</b></span>
+        //                 <span class='prop'>Cerveja/CHOPP: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
+        //                 <span class='prop'>Cerveja/LN: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+        //                 <span class='prop'>Refri/BIB: <b>${numberWithCommas(item.prog_sap)}</b></span>
+        //                 <span class='prop'>Refri/Lata: <b>${numberWithCommas(item.tend)}</b></span>
+        //                 <span class='prop'>Refri/KS: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
+        //                 <span class='prop'>Refri/PET: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+        //                 <span class='prop'>Mista/Lata: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+        //             </div>`
+        //         )
+        //     }).join('')
+        // };
+    
+        function GetTotalByUnit (data) {
+            var result = [];
+            data.reduce(function(res, value) {
+                if (!res[value.unit_name]) {
+                    res[value.unit_name] = { unit_name: value.unit_name, prog_sap: 0, tend: 0, prog_sap_d1: 0, real_sap_d1: 0 };
+                    result.push(res[value.unit_name])
+                }
+
+                var prog_sapConvertedValue = value.prog_sap ? parseFloat(value.prog_sap.replace('.', '')) : 0;
+                var tendConvertedValue = value.tend ? parseFloat(value.tend.replace('.', '')) : 0;
+                var prog_sap_d1ConvertedValue = value.prog_sap_d1 ? parseFloat(value.prog_sap_d1.replace('.', '')) : 0;
+                var real_sap_d1ConvertedValue = value.real_sap_d1 ? parseFloat(value.real_sap_d1.replace('.', '')) : 0;
+
+                res[value.unit_name].prog_sap += prog_sapConvertedValue;
+                res[value.unit_name].tend += tendConvertedValue;
+                res[value.unit_name].prog_sap_d1 += prog_sap_d1ConvertedValue;
+                res[value.unit_name].real_sap_d1 += real_sap_d1ConvertedValue;
+
+                return res;
+            }, {});
+
+            return result;
+        };
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+
+</body>
+</html>

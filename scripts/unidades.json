@@ -1,0 +1,34 @@
+﻿{
+    "Unidades": [
+        {
+            "codigo": "",
+            "nome": "Guarulhos",
+            "linhas": [ "L501", "L505", "L506", "L511", "L521" ]
+        },
+        {
+            "codigo": "",
+            "nome": "Jundiaí",
+            "linhas": [ "L327", "L512", "L551", "L561", "L562", "L563", "L564", "L565" ]
+        },
+        {
+            "codigo": "",
+            "nome": "Jaguariúna",
+            "linhas": [ "L501", "L502", "L512", "L521", "L523", "L541", "L561", "L562", "L563", "L564" ]
+        },
+        {
+            "codigo": "",
+            "nome": "Jacareí",
+            "linhas": [ "L503", "L504", "L505", "L512", "L513", "L514", "L542" ]
+        },
+        {
+            "codigo": "",
+            "nome": "Juatuba",
+            "linhas": [ "Minas L501", "Minas L502", "Minas L511", "Minas L512", "Minas L522" ]
+        },
+        {
+            "codigo": "",
+            "nome": "Sete Lagoas",
+            "linhas": [ "Nova Minas L501", "Nova Minas L502", "Nova Minas L503", "Nova Minas L511", "Nova Minas L512", "Nova Minas L561", "Nova Minas L562" ]
+        }
+    ]
+}

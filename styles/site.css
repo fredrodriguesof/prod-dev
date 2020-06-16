@@ -176,9 +176,11 @@ table.newTable tbody td {
 
 .boxTotal .prop {
   float: left;
-  width: 50%;
+  width: 33%;
   text-align: center;
   margin: 10px 0;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #fff;
 }
 
 .boxMostoInput, .boxLogInput, .boxCovidInput {

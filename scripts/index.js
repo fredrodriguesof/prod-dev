@@ -70,12 +70,14 @@
                     $('.boxLogInput').hide();
                     $('.boxCovidInput').hide();
                     $('.boxMostoInput').show();
-                } else if (clickedLineName === 'Logística') {
-                    $('.boxLineInput').hide();
-                    $('.boxMostoInput').hide();
-                    $('.boxCovidInput').hide();
-                    $('.boxLogInput').show();
-                } else if (clickedLineName === 'Covid') {
+                } 
+                // else if (clickedLineName === 'Logística') {
+                //     $('.boxLineInput').hide();
+                //     $('.boxMostoInput').hide();
+                //     $('.boxCovidInput').hide();
+                //     $('.boxLogInput').show();
+                // }
+                else if (clickedLineName === 'Covid') {
                     $('.boxLineInput').hide();
                     $('.boxLogInput').hide();
                     $('.boxMostoInput').hide();
@@ -157,80 +159,80 @@
 
         FillProductionFields: function (production) {
             document.querySelectorAll('input[name="id"]')[0].value = production.id;
-            document.querySelectorAll('input[name="cap"]')[0].value = production.cap;
+            // document.querySelectorAll('input[name="cap"]')[0].value = production.cap;
             document.querySelectorAll('input[name="prog_sap"]')[0].value = production.prog_sap;
             document.querySelectorAll('input[name="tend"]')[0].value = production.tend;
-            document.querySelectorAll('input[name="prog_sap_d1"]')[0].value = production.prog_sap_d1;
-            document.querySelectorAll('input[name="real_sap_d1"]')[0].value = production.real_sap_d1;
-            document.querySelectorAll('input[name="lef_meta"]')[0].value = production.lef_meta;
-            document.querySelectorAll('input[name="lef_real"]')[0].value = production.lef_real;
-            document.querySelectorAll('input[name="gly_meta"]')[0].value = production.gly_meta;
-            document.querySelectorAll('input[name="gly_real"]')[0].value = production.gly_real;
-            document.querySelectorAll('input[name="dem"]')[0].value = production.dem;
-            document.querySelectorAll('input[name="real"]')[0].value = production.real;
-            document.querySelectorAll('input[name="retido_hl"]')[0].value = production.retido_hl;
-            document.querySelectorAll('input[name="espaco"]')[0].value = production.espaco;
-            document.querySelectorAll('input[name="acima_50_dias"]')[0].value = production.acima_50_dias;
-            document.querySelectorAll('input[name="cdp_falta"]')[0].value = production.cdp_falta;
-            document.querySelectorAll('input[name="terc"]')[0].value = production.terc;
-            document.querySelectorAll('input[name="prop"]')[0].value = production.prop;
-            document.querySelectorAll('input[name="media"]')[0].value = production.media;
-            document.querySelectorAll('input[name="susp"]')[0].value = production.susp;
-            document.querySelectorAll('input[name="conf"]')[0].value = production.conf;
-            document.querySelectorAll('input[name="desc"]')[0].value = production.desc;
+            // document.querySelectorAll('input[name="prog_sap_d1"]')[0].value = production.prog_sap_d1;
+            // document.querySelectorAll('input[name="real_sap_d1"]')[0].value = production.real_sap_d1;
+            // document.querySelectorAll('input[name="lef_meta"]')[0].value = production.lef_meta;
+            // document.querySelectorAll('input[name="lef_real"]')[0].value = production.lef_real;
+            // document.querySelectorAll('input[name="gly_meta"]')[0].value = production.gly_meta;
+            // document.querySelectorAll('input[name="gly_real"]')[0].value = production.gly_real;
+            // document.querySelectorAll('input[name="dem"]')[0].value = production.dem;
+            // document.querySelectorAll('input[name="real"]')[0].value = production.real;
+            // document.querySelectorAll('input[name="retido_hl"]')[0].value = production.retido_hl;
+            // document.querySelectorAll('input[name="espaco"]')[0].value = production.espaco;
+            // document.querySelectorAll('input[name="acima_50_dias"]')[0].value = production.acima_50_dias;
+            // document.querySelectorAll('input[name="cdp_falta"]')[0].value = production.cdp_falta;
+            // document.querySelectorAll('input[name="terc"]')[0].value = production.terc;
+            // document.querySelectorAll('input[name="prop"]')[0].value = production.prop;
+            // document.querySelectorAll('input[name="media"]')[0].value = production.media;
+            // document.querySelectorAll('input[name="susp"]')[0].value = production.susp;
+            // document.querySelectorAll('input[name="conf"]')[0].value = production.conf;
+            // document.querySelectorAll('input[name="desc"]')[0].value = production.desc;
         },
 
         GetFormData: function (lineId) {
             let id = document.querySelectorAll('input[name="id"]')[0].value;
-            let cap = document.querySelectorAll('input[name="cap"]')[0].value;
+            // let cap = document.querySelectorAll('input[name="cap"]')[0].value;
             let prog_sap = document.querySelectorAll('input[name="prog_sap"]')[0].value;
             let tend = document.querySelectorAll('input[name="tend"]')[0].value;
-            let prog_sap_d1 = document.querySelectorAll('input[name="prog_sap_d1"]')[0].value;
-            let real_sap_d1 = document.querySelectorAll('input[name="real_sap_d1"]')[0].value;
-            let lef_meta = document.querySelectorAll('input[name="lef_meta"]')[0].value;
-            let lef_real = document.querySelectorAll('input[name="lef_real"]')[0].value;
-            let gly_meta = document.querySelectorAll('input[name="gly_meta"]')[0].value;
-            let gly_real = document.querySelectorAll('input[name="gly_real"]')[0].value;
-            let dem = document.querySelectorAll('input[name="dem"]')[0].value;
-            let real = document.querySelectorAll('input[name="real"]')[0].value;
-            let retido_hl = document.querySelectorAll('input[name="retido_hl"]')[0].value;
-            let espaco = document.querySelectorAll('input[name="espaco"]')[0].value;
-            let acima_50_dias = document.querySelectorAll('input[name="acima_50_dias"]')[0].value;
-            let cdp_falta = document.querySelectorAll('input[name="cdp_falta"]')[0].value;
-            let terc = document.querySelectorAll('input[name="terc"]')[0].value;
-            let prop = document.querySelectorAll('input[name="prop"]')[0].value;
-            let media = document.querySelectorAll('input[name="media"]')[0].value;
-            let susp = document.querySelectorAll('input[name="susp"]')[0].value;
-            let conf = document.querySelectorAll('input[name="conf"]')[0].value;
-            let desc = document.querySelectorAll('input[name="desc"]')[0].value;
+            // let prog_sap_d1 = document.querySelectorAll('input[name="prog_sap_d1"]')[0].value;
+            // let real_sap_d1 = document.querySelectorAll('input[name="real_sap_d1"]')[0].value;
+            // let lef_meta = document.querySelectorAll('input[name="lef_meta"]')[0].value;
+            // let lef_real = document.querySelectorAll('input[name="lef_real"]')[0].value;
+            // let gly_meta = document.querySelectorAll('input[name="gly_meta"]')[0].value;
+            // let gly_real = document.querySelectorAll('input[name="gly_real"]')[0].value;
+            // let dem = document.querySelectorAll('input[name="dem"]')[0].value;
+            // let real = document.querySelectorAll('input[name="real"]')[0].value;
+            // let retido_hl = document.querySelectorAll('input[name="retido_hl"]')[0].value;
+            // let espaco = document.querySelectorAll('input[name="espaco"]')[0].value;
+            // let acima_50_dias = document.querySelectorAll('input[name="acima_50_dias"]')[0].value;
+            // let cdp_falta = document.querySelectorAll('input[name="cdp_falta"]')[0].value;
+            // let terc = document.querySelectorAll('input[name="terc"]')[0].value;
+            // let prop = document.querySelectorAll('input[name="prop"]')[0].value;
+            // let media = document.querySelectorAll('input[name="media"]')[0].value;
+            // let susp = document.querySelectorAll('input[name="susp"]')[0].value;
+            // let conf = document.querySelectorAll('input[name="conf"]')[0].value;
+            // let desc = document.querySelectorAll('input[name="desc"]')[0].value;
             let unit_id = selectedUnity.id;
 	        let line_id = lineId;
             
             let production = {
                 id,
-                cap,
+                //cap,
                 prog_sap,
                 tend,
-                prog_sap_d1,
-                real_sap_d1,
-                lef_meta,
-                lef_real,
-                gly_meta,
-                gly_real,
+                // prog_sap_d1,
+                // real_sap_d1,
+                // lef_meta,
+                // lef_real,
+                // gly_meta,
+                // gly_real,
                 unit_id,
                 line_id,
-                dem,
-                real,
-                retido_hl,
-                espaco,
-                acima_50_dias,
-                cdp_falta,
-                terc,
-                prop,
-                media,
-                susp,
-                conf,
-	            desc
+                // dem,
+                // real,
+                // retido_hl,
+                // espaco,
+                // acima_50_dias,
+                // cdp_falta,
+                // terc,
+                // prop,
+                // media,
+                // susp,
+                // conf,
+	            // desc
             }
 
             return production;
@@ -240,16 +242,19 @@
             if (clickedLineName === 'Mosto') {
                 if  (production.dem || production.real)
                     return true;
-            } else if (clickedLineName === 'Logística') {
-                if  (production.retido_hl || production.espaco || production.acima_50_dias || production.cdp_falta)
-                    return true;
-            } else if (clickedLineName === 'Covid') {
+            } 
+            // else if (clickedLineName === 'Logística') {
+            //     if  (production.retido_hl || production.espaco || production.acima_50_dias || production.cdp_falta)
+            //         return true;
+            // } 
+            else if (clickedLineName === 'Covid') {
                 if  (production.terc || production.prop || production.media || production.susp 
                     || production.conf || production.desc)
                     return true;
             } else {
-                if  (production.cap || production.prog_sap || production.tend || production.prog_sap_d1 || production.real_sap_d1 
-                    || production.lef_meta || production.lef_real || production.gly_meta || production.gly_real)
+                // if  (production.cap || production.prog_sap || production.tend || production.prog_sap_d1 || production.real_sap_d1 
+                //     || production.lef_meta || production.lef_real || production.gly_meta || production.gly_real)
+                if  (production.prog_sap || production.tend)
                     return true;
             }
 
@@ -260,16 +265,19 @@
             if (clickedLineName === 'Mosto') {
                 if  (production.dem && production.real)
                     return true;
-            } else if (clickedLineName === 'Logística') {
-                if  (production.retido_hl && production.espaco && production.acima_50_dias && production.cdp_falta)
-                    return true;
-            } else if (clickedLineName === 'Covid') {
+            } 
+            // else if (clickedLineName === 'Logística') {
+            //     if  (production.retido_hl && production.espaco && production.acima_50_dias && production.cdp_falta)
+            //         return true;
+            // } 
+            else if (clickedLineName === 'Covid') {
                 if  (production.terc && production.prop && production.media && production.susp 
                     && production.conf && production.desc)
                     return true;
             } else {
-                if  (production.cap && production.prog_sap && production.tend && production.prog_sap_d1 && production.real_sap_d1 
-                    && production.lef_meta && production.lef_real && production.gly_meta && production.gly_real)
+                // if  (production.cap && production.prog_sap && production.tend && production.prog_sap_d1 && production.real_sap_d1 
+                //     && production.lef_meta && production.lef_real && production.gly_meta && production.gly_real)
+                if  (production.prog_sap && production.tend)
                     return true;
             }
 

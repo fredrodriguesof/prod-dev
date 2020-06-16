@@ -19,10 +19,10 @@
                     <th>Data</th>
                     <th>Unidade</th>
                     <th>Linha</th>
-                    <th>Cap.</th>	
+                    <!-- <th>Cap.</th>	 -->
                     <th>Prog SAP</th>	
                     <th>TEND</th>	
-                    <th>Prog SAP D-1</th>	
+                    <!-- <th>Prog SAP D-1</th>	
                     <th>Real SAP D-1</th>	
                     <th>LEF Meta</th>	
                     <th>LEF Real</th>	
@@ -39,7 +39,7 @@
                     <th>Média</th>
                     <th>Susp</th>
                     <th>Conf</th>
-                    <th>Desc</th>
+                    <th>Desc</th> -->
                 </tr>
             </thead>
             <tbody data-list>
@@ -63,6 +63,8 @@
                 table.innerHTML = FillTable(response);
 
                 const totalContent = document.querySelector('.totalContent');
+                var tst = GetTotalByUnit(response);
+                console.log(tst);
                 totalContent.innerHTML = FillTotal(GetTotalByUnit(response));
             }
         });
@@ -75,33 +77,43 @@
                 var year = d.getFullYear();
                 var dateStr = date + '/' + month + '/' + year;
 
+                // return (
+                //     `<tr>
+                //         <td class='posStl'>${dateStr}</td>
+                //         <td class='posStl'>${item.unit_name}</td>
+                //         <td class='posStl'>${item.line_name}</td>
+                //         <td class='posStl'>${numberWithCommas(item.cap.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.prog_sap.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.tend.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.prog_sap_d1.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.real_sap_d1.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.lef_meta.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.lef_real.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.gly_meta.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.gly_real.replace('.', ''))}</td>
+                        
+                //         <td class='posStl'>${numberWithCommas(item.dem.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.real.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.retido_hl.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.espaco.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.acima_50_dias.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.cdp_falta.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.terc.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.prop.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.media.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.susp.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.conf.replace('.', ''))}</td>
+                //         <td class='posStl'>${numberWithCommas(item.desc.replace('.', ''))}</td>
+                //     </tr>`
+                // )
+
                 return (
                     `<tr>
                         <td class='posStl'>${dateStr}</td>
                         <td class='posStl'>${item.unit_name}</td>
                         <td class='posStl'>${item.line_name}</td>
-                        <td class='posStl'>${numberWithCommas(item.cap.replace('.', ''))}</td>
                         <td class='posStl'>${numberWithCommas(item.prog_sap.replace('.', ''))}</td>
                         <td class='posStl'>${numberWithCommas(item.tend.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.prog_sap_d1.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.real_sap_d1.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.lef_meta.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.lef_real.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.gly_meta.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.gly_real.replace('.', ''))}</td>
-                        
-                        <td class='posStl'>${numberWithCommas(item.dem.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.real.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.retido_hl.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.espaco.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.acima_50_dias.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.cdp_falta.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.terc.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.prop.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.media.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.susp.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.conf.replace('.', ''))}</td>
-                        <td class='posStl'>${numberWithCommas(item.desc.replace('.', ''))}</td>
                     </tr>`
                 )
             }).join('')
@@ -109,55 +121,74 @@
 
         function FillTotal (data) {
             return data.map((item) => {
+
                 return (
                     `<div class='boxTotal'>
                         <span class='title'>${item.unit_name}</span>
+
+                        <span class='prop'><b>Cerveja:</b></span>
                         <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
                         <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
-                        <span class='prop'>Prog SAP D-1: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
-                        <span class='prop'>Real SAP D-1: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+
+                        <span class='prop'><b>Refri:</b></span>
+                        <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
+                        <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
+
+                        <span class='prop'><b>Lata:</b></span>
+                        <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
+                        <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
+
+                        <span class='prop'><b>RGB:</b></span>
+                        <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
+                        <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
                     </div>`
+
+                // return (
+                //     `<div class='boxTotal'>
+                //         <span class='title'>${item.unit_name}</span>
+                //         <span class='prop'>Prog SAP: <b>${numberWithCommas(item.prog_sap)}</b></span>
+                //         <span class='prop'>TEND: <b>${numberWithCommas(item.tend)}</b></span>
+                //         <span class='prop'>Prog SAP D-1: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
+                //         <span class='prop'>Real SAP D-1: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
+                //     </div>`
                 )
             }).join('')
         };
 
-        // function FillTotalRegional (data) {
-        //     return data.map((item) => {
-        //         return (
-        //             `<div class='boxTotal'>
-        //                 <span class='title'>Total Regional</span>
-        //                 <span class='prop'>Cerveja/RGB: <b>${numberWithCommas(item.prog_sap)}</b></span>
-        //                 <span class='prop'>Cerveja/Lata: <b>${numberWithCommas(item.tend)}</b></span>
-        //                 <span class='prop'>Cerveja/CHOPP: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
-        //                 <span class='prop'>Cerveja/LN: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
-        //                 <span class='prop'>Refri/BIB: <b>${numberWithCommas(item.prog_sap)}</b></span>
-        //                 <span class='prop'>Refri/Lata: <b>${numberWithCommas(item.tend)}</b></span>
-        //                 <span class='prop'>Refri/KS: <b>${numberWithCommas(item.prog_sap_d1)}</b></span>
-        //                 <span class='prop'>Refri/PET: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
-        //                 <span class='prop'>Mista/Lata: <b>${numberWithCommas(item.real_sap_d1)}</b></span>
-        //             </div>`
-        //         )
-        //     }).join('')
-        // };
-    
         function GetTotalByUnit (data) {
             var result = [];
             data.reduce(function(res, value) {
                 if (!res[value.unit_name]) {
-                    res[value.unit_name] = { unit_name: value.unit_name, prog_sap: 0, tend: 0, prog_sap_d1: 0, real_sap_d1: 0 };
+                    res[value.unit_name] = { unit_name: value.unit_name, tipo: value.tipo, prog_sap: 0, tend: 0 };
                     result.push(res[value.unit_name])
                 }
 
                 var prog_sapConvertedValue = value.prog_sap ? parseFloat(value.prog_sap.replace('.', '')) : 0;
                 var tendConvertedValue = value.tend ? parseFloat(value.tend.replace('.', '')) : 0;
-                var prog_sap_d1ConvertedValue = value.prog_sap_d1 ? parseFloat(value.prog_sap_d1.replace('.', '')) : 0;
-                var real_sap_d1ConvertedValue = value.real_sap_d1 ? parseFloat(value.real_sap_d1.replace('.', '')) : 0;
-
+                
                 res[value.unit_name].prog_sap += prog_sapConvertedValue;
                 res[value.unit_name].tend += tendConvertedValue;
-                res[value.unit_name].prog_sap_d1 += prog_sap_d1ConvertedValue;
-                res[value.unit_name].real_sap_d1 += real_sap_d1ConvertedValue;
+                
+                return res;
+            }, {});
 
+            return result;
+        };
+
+        function GetTotalByType (data) {
+            var result = [];
+            data.reduce(function(res, value) {
+                if (!res[value.tipo]) {
+                    res[value.unit_name] = { unit_name: value.unit_name, prog_sap: 0, tend: 0 };
+                    result.push(res[value.unit_name])
+                }
+
+                var prog_sapConvertedValue = value.prog_sap ? parseFloat(value.prog_sap.replace('.', '')) : 0;
+                var tendConvertedValue = value.tend ? parseFloat(value.tend.replace('.', '')) : 0;
+                
+                res[value.unit_name].prog_sap += prog_sapConvertedValue;
+                res[value.unit_name].tend += tendConvertedValue;
+                
                 return res;
             }, {});
 

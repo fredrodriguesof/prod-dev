@@ -12,7 +12,7 @@ function App (props) {
   }
   
   return (
-    <div class="contador">
+    <div className="contador">
       <h2>{props.title}</h2>
       <h3>{contagem}</h3>
       <div>
